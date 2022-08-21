@@ -15,7 +15,7 @@ function markupOneBox ([data]) {
     let languagesList = [];
     languages.forEach(({name}) => languagesList.push(name))
     languagesList = languagesList.join(", ");
-    const markup = `<img src="${svg}" width="700" alt="flag country"><div class="container"><h1 class="title">${name}</h1><ul><li><span class="characteristic">Capital:   </span>${capital}</li><li><span class="characteristic">Population:   </span>${population}</li><li><span class="characteristic">Languages:   </span>${languagesList}</li></ul></div>`;
+    const markup = `<img src="${svg}" width="500" alt="flag country"><div class="container"><h1 class="title">${name}</h1><ul><li><span class="characteristic">Capital:   </span>${capital}</li><li><span class="characteristic">Population:   </span>${population}</li><li><span class="characteristic">Languages:   </span>${languagesList}</li></ul></div>`;
     refs.box.classList.add("country-info--margin")
     refs.box.innerHTML = markup;
 }
