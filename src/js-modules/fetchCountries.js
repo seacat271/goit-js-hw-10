@@ -1,14 +1,13 @@
 import { resetAllHTML } from "./markup";
-import { Notify } from 'notiflix/build/notiflix-notify-aio';
+import {showErrorText, showFailMessage} from './message';
 
-export {fetchCountries};
 
 
 const BASE_URL = "https://restcountries.com/v2/name/"
-const options = "?fields=name,capital,population,flags,languages"
+const options = "?fields=name,capital,population,flags,languages" //Чи можливо/варто зробити окремий об'єкт налаштувань?
 
-function fetchCountries (chars) {
-    return fetch(`${BASE_URL}${chars}${options}`)
+export default function fetchCountries (name) {
+    return fetch(`${BASE_URL}${name}${options}`)
     .then(response => {
         if (response.ok) return response.json();
         if(response.status === 404) {
@@ -16,15 +15,12 @@ function fetchCountries (chars) {
  
                 throw new Error(value.message)
             })
-
         }
- 
     })
     .catch(({message}) => {
-
         resetAllHTML()
-        if (message == "Not Found") return Notify.failure("Oops, there is no country with that name")
-        else return Notify.failure(`${message}`)
+        if (message == "Not Found") return showFailMessage()
+        else return showErrorText(`${message}`)
     })
  }
 
