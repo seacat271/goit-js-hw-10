@@ -7,8 +7,9 @@ import {showInfoMessage} from './js-modules/message'
 
 const DEBOUNCE_DELAY = 300;
 
-refs.inputField.addEventListener("input", debounce( (event) => {
+refs.inputField.addEventListener("input", debounce(onInputChange, DEBOUNCE_DELAY))
 
+function onInputChange (event) {
     const chars = event.target.value.trim();
     if (chars === "") {
         resetAllHTML()
@@ -29,9 +30,21 @@ fetchCountries(chars).then((data) =>{
     } 
 })
 .catch(err => console.log(err))
+}
 
-}, DEBOUNCE_DELAY))
+refs.list.addEventListener("click", onClickCountry
+)
 
+function onClickCountry(event) {
+    console.log(event.target.nodeName)
+    if(event.target.nodeName !== "SPAN" && event.target.nodeName !== "IMG" && event.target.nodeName !== "LI") return
+    fetchCountries(event.target.closest("li").dataset.item).then((data) => {
+        resetHTML(refs.list)
+        markupOneBox(data)
+        refs.inputField.value = event.target.closest("li").dataset.item;
+        refs.inputField.focus()
+}).catch(err => console.log(err))
+}
 
 
 
