@@ -32,8 +32,7 @@ fetchCountries(chars).then((data) =>{
 .catch(err => console.log(err))
 }
 
-refs.list.addEventListener("click", onClickCountry
-)
+refs.list.addEventListener("click", onClickCountry);
 
 function onClickCountry(event) {
     console.log(event.target.nodeName)
