@@ -16,6 +16,7 @@ function onInputChange (event) {
         return}
 
 fetchCountries(chars).then((data) =>{
+    if(data === undefined) return
     if (data.length > 9) {
         resetAllHTML()
         showInfoMessage()

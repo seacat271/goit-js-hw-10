@@ -14,6 +14,7 @@ export default function fetchCountries (name) {
             return response.json().then(value => {
  
                 throw new Error(value.message)
+                
             })
         }
     })
